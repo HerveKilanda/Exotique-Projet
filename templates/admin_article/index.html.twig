@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>Article index</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.Titre }}</td>
+                <td><img src="{{ article.Image }}" alt="" height="100"></td>
+                <td>{{ article.Prix }}</td>
+                <td>{{ article.Description }}</td>
+                <td>
+                    <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">Detail</a>
+                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun article a été trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_article_new') }}">Creer une nouvelle catégorie</a>
+{% endblock %}

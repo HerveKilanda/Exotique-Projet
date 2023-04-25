@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LookupController!{% endblock %}
+
+{% block body %}
+<h1>Resultat de ta recherche</h1>
+<h2 class="my-4">Voici les articles correspondant à votre recherche :</h3>
+
+          {% for article in articles %}
+            <tr>
+                <td>{{ article.Titre }}</td>
+                <td><img src="{{ article.image }}" alt="..." height="300" widht="100"></td>
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}">Detail de l'article</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun article disponible</td>
+            </tr>
+        {% endfor %}
+
+{% endblock %}
